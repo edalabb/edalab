@@ -1,0 +1,26 @@
+2. EDA EMAIL BASED 
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns 
+data = { 
+'Subject': ['Meeting Reminder', 'Promo Offer', 'Project Update'], 
+'Sender': ['boss@abc.com', 'promo@store.com', 
+'colleague@abc.com'], 
+'Receiver': ['me@example.com', 'me@example.com', 
+'me@example.com'], 
+'Date': ['2023-12-01 10:30', '2023-12-02 08:45', '2023-12-02 
+11:15'],  'Body_Length': [245, 150, 320], 
+'Has_Attachments': ['Yes', 'No', 'Yes'] } 
+df = pd.DataFrame(data)  print(df.head()) 
+df['Date'] = pd.to_datetime(df['Date']) 
+df['Day'] = df['Date'].dt.day_name() 
+df['Hour'] = df['Date'].dt.hour print(df.describe()) 
+print(df['Sender'].value_counts()) 
+sns.countplot(data=df, x='Day', palette='cool') 
+plt.title('Email Count by Day') 
+plt.xticks(rotation=45)  plt.show() 
+sns.histplot(data=df, x='Hour', bins=24, kde=True, 
+color='skyblue')  plt.title('Email Frequency by Hour') 
+plt.show() 
+sns.countplot(data=df, x='Has_Attachments', palette='viridis') 
+plt.title('Attachment Distribution')  plt.show() 
