@@ -1,0 +1,10 @@
+7.CARTOGRAPHIC VISUALIZE  
+import plotly.express as px 
+import pandas as pd 
+df = px.data.gapminder().query("year == 2007") 
+fig = px.choropleth( 
+df, 
+locations="iso_alpha", color="gdpPercap", 
+hover_name="country", 
+title="Global GDP per Capita - 2007", 
+color_continuous_scale="Viridis")  fig.show() 
