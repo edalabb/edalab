@@ -1,0 +1,28 @@
+5.TIME SERIES ANALYSIS 
+!pip install statsmodels 
+import numpy as np  import pandas as pd 
+import matplotlib.pyplot as plt 
+from statsmodels.tsa.seasonal import seasonal_decompose 
+sales = [120, 130, 125, 140, 150, 160, 170, 165, 155, 145, 135, 
+140, 150, 160, 165, 175, 185, 190, 185, 180, 170, 160, 155, 160] 
+dates = pd.date_range(start='2021-01-01', periods=len(sales), 
+freq='M')  sales_data = pd.Series(sales, index=dates) 
+plt.figure(figsize=(8,4)) plt.plot(sales_data, color='darkgreen') 
+plt.title("Monthly Sales")  plt.ylabel("Sales") 
+plt.grid(True)  plt.show() 
+decomp = seasonal_decompose(sales_data, model='additive', 
+period=12)   decomp.plot()  plt.show() 
+plt.figure(figsize=(8,5)) 
+for year in sorted(set(sales_data.index.year)): 
+year_data = sales_data[sales_data.index.year == year] 
+plt.plot(range(1, len(year_data)+1), year_data.values, 
+label=str(year))   plt.xticks(range(1,13)) 
+plt.title("Seasonal Plot (Sales)")  plt.xlabel("Month") 
+plt.ylabel("Sales")  plt.legend() 
+plt.show()  sales_data_df = pd.DataFrame({'Month': 
+sales_data.index.month, 'Sales': sales_data.values}) 
+plt.figure(figsize=(8,5)) 
+sales_data_df.boxplot(column='Sales', by='Month', grid=False) 
+plt.title("Month-wise Sales Boxplot") 
+plt.suptitle("")  plt.xlabel("Month") 
+plt.ylabel("Sales")   plt.show() 
