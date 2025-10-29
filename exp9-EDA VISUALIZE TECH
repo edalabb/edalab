@@ -1,0 +1,21 @@
+9.EDA VISUALIZE TECH 
+import pandas as pd 
+import seaborn as sns 
+import matplotlib.pyplot as plt 
+df = sns.load_dataset('titanic') 
+df.head() df.info() 
+df.describe()  df.isnull().sum() 
+df.drop(['deck'], axis=1, inplace=True)  
+df['age'].fillna(df['age'].median(), inplace=True) 
+df['embarked'].fillna(df['embarked'].mode()[0], inplace=True) 
+sns.countplot(x='survived', data=df) 
+plt.title('Survival Count')  plt.show() 
+sns.histplot(df['age'], bins=30, kde=True) 
+plt.title('Age Distribution')   plt.show() 
+sns.barplot(x='sex', y='survived', data=df) 
+plt.title('Survival Rate by Gender') plt.show() 
+sns.boxplot(x='pclass', y='age', data=df) 
+plt.title('Age by Passenger Class') plt.show() 
+sns.heatmap(df.corr(numeric_only=True), annot=True, 
+cmap='coolwarm') 
+plt.title('Feature Correlation')  plt.show()
