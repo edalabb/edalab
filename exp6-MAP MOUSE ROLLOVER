@@ -1,0 +1,14 @@
+6.MAP MOUSE ROLLOVER 
+import plotly.express as px 
+import pandas as pd 
+url = 
+"https://raw.githubusercontent.com/plotly/datasets/master/2
+ 011_us_ag_exports.csv" 
+df = pd.read_csv(url) 
+print(df.sample(2)) 
+fig = px.choropleth( 
+df, locations='code', locationmode="USA-states", 
+color='total exports', hover_name='state', 
+scope="usa", title='US Agriculture Exports by State (2011)', 
+color_continuous_scale='Viridis', width=900, height=500) 
+fig.show() 
