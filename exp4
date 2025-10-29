@@ -1,0 +1,29 @@
+4.R SAMPLE DATA VISUALIZE 
+import pandas as pd, seaborn as sns, matplotlib.pyplot as plt 
+iris = sns.load_dataset('iris') 
+print(iris.head()) 
+iris_selected = iris[['sepal_length','sepal_width','species']] 
+iris_filtered = iris[iris['sepal_length'] > 5] 
+iris_clean = iris[(iris['sepal_length'] > 5) & (iris['species'] == 
+'setosa')][['sepal_length','sepal_width','petal_length']] 
+iris_na = iris.copy() 
+iris_na.loc[:4, 'sepal_length'] = None 
+cleaned_iris = iris_na.dropna()  plt.figure(figsize=(10,8)) 
+plt.subplot(2,2,1) 
+plt.scatter(iris['sepal_length'], iris['petal_length'], 
+color='purple') 
+plt.title("Sepal Length vs Petal Length") 
+plt.xlabel("Sepal Length"); plt.ylabel("Petal Length") 
+plt.subplot(2,2,2) 
+plt.hist(iris['sepal_length'], color='lightblue', edgecolor='black') 
+plt.title("Histogram of Sepal Length"); plt.xlabel("Sepal Length") 
+plt.subplot(2,2,3) 
+sns.boxplot(x='species', y='sepal_length', data=iris, 
+palette='pink') 
+plt.title("Sepal Length by Species")  plt.subplot(2,2,4) 
+iris['species'].value_counts().plot(kind='bar', color='lightcoral') 
+plt.title("Species Counts"); plt.xlabel("Species") 
+plt.tight_layout(); plt.show() 
+sns.scatterplot(data=iris, x='petal_length', y='sepal_length', 
+hue='species', s=80)  plt.title("Sepal vs Petal Length by Species") 
+plt.show() 
