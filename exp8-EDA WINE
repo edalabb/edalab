@@ -1,0 +1,19 @@
+8.EDA WINE  
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+url = "https://archive.ics.uci.edu/ml/machine-learning
+databases/wine-quality/winequality-red.csv" 
+df = pd.read_csv(url, sep=';') 
+print(df.info(), "\n")  print(df.describe(), "\n") 
+print("Missing values:\n", df.isnull().sum()) 
+sns.countplot(x='quality', data=df) 
+plt.title('Wine Quality Distribution') plt.show() 
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm') 
+plt.title('Feature Correlation Heatmap') 
+plt.show() 
+sns.scatterplot(x='alcohol', y='quality', data=df) 
+plt.title('Alcohol vs Quality') plt.show() 
+plt.figure(figsize=(12, 6)) 
+sns.boxplot(data=df, orient='h') 
+plt.title('Boxplot for All Features') plt.show()
