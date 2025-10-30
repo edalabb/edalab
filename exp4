@@ -27,15 +27,3 @@ plt.tight_layout(); plt.show()
 sns.scatterplot(data=iris, x='petal_length', y='sepal_length', 
 hue='species', s=80)  plt.title("Sepal vs Petal Length by Species") 
 plt.show() 
-data("iris")
-head(iris)
-iris_selected<-iris[,c("Sepal.Length","Sepal.Width","Species")]
-iris_filtered<-iris[iris$Sepal.Length>5,]
-iris_with_na<-iris
-iris_na_omitted<-na.omit(iris_with_na)
-plot(iris$Sepal.Length,iris$Petal.Length,main="Sepal Length vs Petal Length",xlab="Sepal Length",ylab="Petal Length",col="purple")
-hist(iris$Sepal.Length,main="Histogram of Sepal Length",xlab="Sepal Length")
-boxplot(Sepal.Length~Species,data=iris,main="Sepal Length by Species")
-install.packages("ggplot2")
-library(ggplot2)
-ggplot(iris,aes(x=Petal.Length,y=Sepal.Length,color=Species))+geom_point(size=3)+labs(title="Sepal Length by Petal Length",x="Sepal Length",y="Petal Length")+theme_minimal()
