@@ -22,7 +22,20 @@ plt.ylabel("Sales")  plt.legend()
 plt.show()  sales_data_df = pd.DataFrame({'Month': 
 sales_data.index.month, 'Sales': sales_data.values}) 
 plt.figure(figsize=(8,5)) 
+library(ggplot2)
+install.packages("forecast")
+library(forecast)
+ts_data <- ts(c(29, 30, 31, 32, 34, 36, 35, 33, 30, 28, 27, 29,
+                31, 32, 34, 36, 38, 39, 37, 35, 33, 30, 28, 30),
+              start = c(2020, 1), frequency = 12)
+plot.ts(ts_data, main="Monthly Temperature", ylab="Temperature", col="blue")
+decomp <- decompose(ts_data)
+plot(decomp)
+seasonplot(ts_data, col=rainbow(12), year.labels=TRUE, main="Seasonal Plot")
+month <- cycle(ts_data)
+boxplot(ts_data ~ month, main="Month-wise Boxplot", xlab="Month", ylab="Temperature"
 sales_data_df.boxplot(column='Sales', by='Month', grid=False) 
 plt.title("Month-wise Sales Boxplot") 
 plt.suptitle("")  plt.xlabel("Month") 
-plt.ylabel("Sales")   plt.show() 
+plt.ylabel("Sales")   
+plt.show() 
